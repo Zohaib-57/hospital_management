@@ -8,3 +8,4 @@ class HospitalDoctor(models.Model):
     specialty = fields.Char(string='Specialty')
     phone = fields.Char(string='Phone Number')
     patient_ids = fields.One2many('hospital.patient', 'doctor_id', string='Patients')
+    years_of_experience = fields.Integer(string='Years of Experience')
