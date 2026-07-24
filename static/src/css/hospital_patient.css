@@ -1,0 +1,8 @@
+/* Custom styling for hospital_management module UI elements */
+.o_hospital_patient_admitted {
+    color: green;
+    font-weight: bold;
+}
+.o_hospital_patient_discharged {
+    color: gray;
+}

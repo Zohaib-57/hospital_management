@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="demo_patient_1" model="hospital.patient">
+        <field name="name">Ali Raza</field>
+        <field name="age">34</field>
+        <field name="gender">male</field>
+        <field name="date_of_birth">1992-05-15</field>
+        <field name="phone">03001234567</field>
+        <field name="is_admitted">True</field>
+        <field name="doctor_assigned">Dr. Sara Khan</field>
+    </record>
+
+    <record id="demo_patient_2" model="hospital.patient">
+        <field name="name">Ayesha Malik</field>
+        <field name="age">27</field>
+        <field name="gender">female</field>
+        <field name="date_of_birth">1999-08-20</field>
+        <field name="phone">03007654321</field>
+        <field name="is_admitted">False</field>
+    </record>
+</odoo>

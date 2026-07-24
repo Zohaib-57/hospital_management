@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Default/config data loaded on every install, e.g. a sequence for patient IDs -->
+    <record id="seq_hospital_patient" model="ir.sequence">
+        <field name="name">Hospital Patient Sequence</field>
+        <field name="code">hospital.patient</field>
+        <field name="prefix">PAT-</field>
+        <field name="padding">4</field>
+    </record>
+</odoo>
