@@ -2,7 +2,7 @@
     'name': 'Hospital Management System',
     'version': '19.0.1.0.0',
     'category': 'Healthcare/Hospital',
-   'summary': 'Manage patient records and doctor profiles efficiently.',
+    'summary': 'Comprehensive hospital management solution for patient records and doctor profiles.',
     'description': """
 Hospital Management System
 --------------------------
