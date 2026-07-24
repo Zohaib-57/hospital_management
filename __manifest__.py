@@ -1,7 +1,7 @@
 {
     'name': 'Hospital Management System',
     'version': '19.0.1.0.0',
-    'category': 'Healthcare',
+    'category': 'Healthcare/Hospital',
     'summary': 'Manage patient records, doctors, and healthcare operations in Odoo 19.',
     'description': """
 Hospital Management System
