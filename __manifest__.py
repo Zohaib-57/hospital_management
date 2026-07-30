@@ -14,15 +14,13 @@ A comprehensive module designed for healthcare facilities to manage:
     'author': 'NerithonX Technologies (Pvt.) Ltd.',
     'website': 'https://www.nerithonx.com',
     'license': 'LGPL-3',
-    'depends': ['base','mail'],
+    'depends': ['base', 'mail'],
     'data': [
-        'security/ir.model.access.csv',
-        'data/hospital_patient_data.xml',
-        'views/hospital_patient_views.xml',
-        'views/hospital_doctor_views.xml',
-    ],
-    'demo': [
-        'demo/hospital_patient_demo.xml',
+        'security/ir.model.access.csv',         # 1. Load security first
+        'views/hospital_patient_views.xml',     # 2. Load patient views & actions
+        'views/hospital_doctor_views.xml',      # 3. Load doctor views & actions
+        # 4. Load menus LAST (they reference the actions above)
+        'views/hospital_menus.xml',
     ],
     'installable': True,
     'application': True,

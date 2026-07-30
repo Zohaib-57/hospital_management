@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="hospital_management_root_menu" name="Hospital Management" sequence="10"/>
+
+    <menuitem id="hospital_doctor_menu" name="Doctors" parent="hospital_management_root_menu" action="hospital_doctor_action" sequence="10"/>
+
+    <menuitem id="hospital_patient_menu" name="Patients" parent="hospital_management_root_menu" action="hospital_patient_action" sequence="20"/>
+</odoo>
