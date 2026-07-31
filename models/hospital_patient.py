@@ -21,19 +21,30 @@ class HospitalPatient(models.Model):
 
     notes = fields.Text(string='Medical Notes')
     doctor_id = fields.Many2one('hospital.doctor', string='Primary Doctor')
-    
+
     disease_ids = fields.Many2many(
         "hospital.disease",
         string="Diseases"
     )
 
-# learn how it happened
     @api.depends('date_of_birth')
     def _compute_age(self):
         for record in self:
             if record.date_of_birth:
                 today = fields.Date.today()
-                record.age = today.year - record.date_of_birth.year - \
+                record.age = (
+                    today.year - record.date_of_birth.year -
                     ((today.month, today.day) < (record.date_of_birth.month, record.date_of_birth.day))
+                )
             else:
                 record.age = 0
+
+    @api.model
+    def create(self, vals):
+        return super().create(vals)
+
+    def write(self, vals):
+        return super().write(vals)
+
+    def unlink(self):
+        return super().unlink()
