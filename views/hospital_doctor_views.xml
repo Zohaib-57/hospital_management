@@ -51,6 +51,16 @@
                         <page string="Additional Notes">
                             <field name="additional_notes"/>
                         </page>
+                        <page string="Patients">
+                            <field name="patient_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="gender"/>
+                                    <field name="age"/>
+                                    <field name="phone"/>
+                                </list>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>

@@ -21,6 +21,11 @@ class HospitalPatient(models.Model):
 
     notes = fields.Text(string='Medical Notes')
     doctor_id = fields.Many2one('hospital.doctor', string='Primary Doctor')
+    
+    disease_ids = fields.Many2many(
+        "hospital.disease",
+        string="Diseases"
+    )
 
 # learn how it happened
     @api.depends('date_of_birth')
