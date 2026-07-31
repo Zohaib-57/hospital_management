@@ -58,10 +58,8 @@ class HospitalDoctor(models.Model):
 
     availability_status = fields.Selection(
         [
-            ('available',
-             'Available'),
-            ('not_available',
-             'Not Available')],
+            ('available', 'Available'),
+            ('not_available', 'Not Available')],
         string="Availability",
         default='available',
         help="Availability Status of the Doctor")

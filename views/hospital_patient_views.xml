@@ -26,6 +26,9 @@
 
                     <group string="Medical Information">
                         <field name="doctor_id"/>
+                        <field name="doctor_specialty" readonly='1'/>
+                        <field name="currency_id" invisible='1' />
+                        <field name="consultation_fee" />
                         <field name="disease_ids" widget="many2many_tags"/>
                         <field name="notes"/>
                     </group>
