@@ -26,6 +26,15 @@ class HospitalPatient(models.Model):
         "hospital.disease",
         string="Diseases"
     )
+    active = fields.Boolean(string='Active', default=True)
+    registration_date = fields.Date(string='Registration Date', default=fields.Date.context_today)
+
+    status = fields.Selection([
+        ('new', 'New'),
+        ('admitted', 'Admitted'),
+        ('discharged', 'Discharged'),
+        ('under_treatment', 'Under Treatment'),
+    ], string='Status', default='new')
 
     doctor_specialty = fields.Char(
         string='Doctor Specialty',

@@ -14,9 +14,14 @@
                     </div>
                     <group>
                         <group string="Personal Information">
-                            <field name="gender"/>
-                            <field name="date_of_birth"/>
-                            <field name="age"/>
+                            <group string="Personal Information">
+                                <field name="gender"/>
+                                <field name="date_of_birth"/>
+                                <field name="age"/>
+                                <field name="registration_date"/>
+                                <field name="active"/>
+                                <field name="status"/>
+                            </group>
                         </group>
                         <group string="Contact Information">
                             <field name="phone"/>
@@ -25,11 +30,11 @@
                     </group>
 
                     <group string="Medical Information">
-                        <field name="doctor_id"/>
-                        <field name="doctor_specialty" readonly='1'/>
-                        <field name="currency_id" invisible='1' />
-                        <field name="consultation_fee" />
-                        <field name="disease_ids" widget="many2many_tags"/>
+                        <field name="doctor_id" domain="[('active', '=', True)]" context="{'default_availability_status': 'available'}"/>
+                        <field name="doctor_specialty" readonly="1"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="consultation_fee"/>
+                        <field name="disease_ids" widget="many2many_tags" domain="[('active', '=', True)]"/>
                         <field name="notes"/>
                     </group>
                 </sheet>
@@ -47,9 +52,11 @@
                 <field name="gender"/>
                 <field name="age"/>
                 <field name="doctor_id"/>
-                <!-- NEcesary fields added to be viewed on list -->
+                <field name="status"/>
+                <!-- Necessary fields added to be viewed on list -->
                 <!-- <field name="phone"/>
-                <field name="email"/> -->
+                <field name="email"/>
+                -->
             </list>
         </field>
     </record>

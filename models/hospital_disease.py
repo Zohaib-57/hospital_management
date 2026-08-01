@@ -8,5 +8,5 @@ class HospitalDisease(models.Model):
 
     name = fields.Char(string="Disease Name")
     disease_code = fields.Char(string="Disease Code")
-    description = fields.Text(string='Descrition')
-    active = fields.Boolean(string="Active", default="True")
+    description = fields.Text(string='Description')
+    active = fields.Boolean(string="Active", default=True)
