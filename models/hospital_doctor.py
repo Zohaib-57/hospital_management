@@ -78,3 +78,8 @@ class HospitalDoctor(models.Model):
         "doctor_id",
         string="Patients"
     )
+
+    _doctor_code_unique = models.Constraint(
+        'UNIQUE(doctor_code)',
+        'Doctor Code must be unique! This code is already assigned to another doctor.',
+    )
