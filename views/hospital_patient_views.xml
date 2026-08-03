@@ -52,12 +52,43 @@
                 <field name="gender"/>
                 <field name="age"/>
                 <field name="doctor_id"/>
+                <field name="phone"/>
+                <field name="registration_date"/>
+                <field name="active" column_invisible="True"/>
                 <field name="status"/>
-                <!-- Necessary fields added to be viewed on list -->
-                <!-- <field name="phone"/>
-                <field name="email"/>
-                -->
             </list>
+        </field>
+    </record>
+
+    <record id="view_hospital_patient_search" model="ir.ui.view">
+        <field name="name">hospital.patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search string="Search Patients">
+                <field name="name" string="Patient Name"/>
+                <field name="doctor_id" string="Doctor"/>
+                <field name="disease_ids" string="Disease"/>
+                <field name="phone" string="Phone"/>
+
+                <separator/>
+                <filter name="filter_active" string="Active" domain="[('active', '=', True)]"/>
+                <filter name='filter_inactive' string="Inactive" domain="[('active', '=', False)]"/>
+
+                <separator/>
+                <filter name='filter_male' string="Male" domain="[('gender', '=', 'male')]"/>
+                <filter name='filter_female' string="Female" domain="[('gender', '=', 'female')]"/>
+
+                <separator/>
+                <filter name="filter_has_doctor" string="Assigned to a Doctor" domain="[('doctor_id', '!=', False)]"/>
+                <filter name="filter_no_doctor" string="Not Assigned to a Doctor" domain="[('doctor_id', '=', False)]"/>
+
+                <group>
+                    <filter string="Doctor" name="group_doctor" context="{'group_by': 'doctor_id'}"/>
+                    <filter string="Gender" name="group_by_gender" context="{'group_by': 'gender'}"/>
+                    <filter string="Registration Date" name="group_by_registration_date" context="{'group_by': 'registration_date'}"/>
+                    <filter string="Disease" name="group_by_disease" context="{'group_by': 'disease_ids'}"/>
+                </group>
+            </search>
         </field>
     </record>
 
