@@ -16,6 +16,13 @@
                             <field name="doctor_code" placeholder="Doctor Code"/>
                         </h3>
                     </div>
+
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_patients" type="object" class="oe_stat_button" icon="fa-user-o">
+                            <field name="patient_count" widget="statinfo" string="Patients"/>
+                        </button>
+                    </div>
+
                     <group string="Doctor Status">
                         <field name="availability_status"/>
                         <field name="active" widget="boolean_toggle"/>

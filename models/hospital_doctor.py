@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import api, models, fields
 
 
 class HospitalDoctor(models.Model):
@@ -83,3 +83,24 @@ class HospitalDoctor(models.Model):
         'UNIQUE(doctor_code)',
         'Doctor Code must be unique! This code is already assigned to another doctor.',
     )
+
+    patient_count = fields.Integer(
+        string="Patients",
+        compute="_compute_patient_count",
+    )
+
+    @api.depends('patient_ids')
+    def _compute_patient_count(self):
+        for doctor in self:
+            doctor.patient_count = len(doctor.patient_ids)
+
+    def action_view_patients(self):
+        self.ensure_one()
+        return {
+            'name': 'Patients',
+            'type': 'ir.actions.act_window',
+            'res_model': 'hospital.patient',
+            'view_mode': 'list,form',
+            'domain': [('doctor_id', '=', self.id)],
+            'context': {'default_doctor_id': self.id},
+        }
