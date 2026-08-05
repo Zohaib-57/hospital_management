@@ -54,6 +54,11 @@ class HospitalPatient(models.Model):
         currency_field='currency_id',
         readonly=True
     )
+    medical_history_ids = fields.One2many(
+        'hospital.medical.history',
+        "patient_id",
+        string="Medical History"
+    )
 # onchange methid for the doctor_id field
 
     @api.onchange('doctor_id')

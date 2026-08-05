@@ -37,6 +37,19 @@
                         <field name="disease_ids" widget="many2many_tags" domain="[('active', '=', True)]"/>
                         <field name="notes"/>
                     </group>
+
+                    <group string="Medical History">
+                        <field name="medical_history_ids">
+                            <list editable="bottom">
+                                <field name="visit_date"/>
+                                <field name="name"/>
+                                <field name="disease"/>
+                                <field name="treatment"/>
+                                <field name="status"/>
+                            </list>
+                        </field>
+                    </group>
+                    
                 </sheet>
             </form>
         </field>

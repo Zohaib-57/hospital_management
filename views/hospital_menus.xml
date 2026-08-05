@@ -9,4 +9,7 @@
 
     <menuitem id="hospital_disease_menu" name="Diseases" action="hospital_disease_action" parent="hospital_management_root_menu" sequence="30"/>
 
+    <!-- Menu Item -->
+    <menuitem id="menu_hospital_medical_history" name="Medical History" action="action_hospital_medical_history" parent="hospital_management_root_menu" sequence="40"/>
+
 </odoo>
