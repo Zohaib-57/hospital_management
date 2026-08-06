@@ -7,6 +7,8 @@ class HospitalPatient(models.Model):
     _description = 'Hospital Patient'
     _rec_name = 'name'
 
+    registration_no = fields.Char(string="Registration Number", required=True, default="New", readonly=True, copy=True)
+
     name = fields.Char(string='Name', required=True)
     gender = fields.Selection([
         ('male', 'Male'),
@@ -59,8 +61,8 @@ class HospitalPatient(models.Model):
         "patient_id",
         string="Medical History"
     )
-# onchange methid for the doctor_id field
 
+    # onchange methid for the doctor_id field
     @api.onchange('doctor_id')
     def _onchange_doctor_id(self):
         for rec in self:
@@ -71,7 +73,7 @@ class HospitalPatient(models.Model):
                 rec.doctor_specialty = False
                 rec.consultation_fee = 0.0
 
-# compute method for the age field
+    # compute method for the age field
     @api.depends('date_of_birth')
     def _compute_age(self):
         for record in self:
@@ -85,7 +87,7 @@ class HospitalPatient(models.Model):
             else:
                 record.age = 0
 
-# constraint method for the age field
+    # constraint method for the age field
     @api.constrains('age')
     def _check_age(self):
         for record in self:
@@ -96,7 +98,7 @@ class HospitalPatient(models.Model):
                 raise ValidationError(
                     'Patient Age seems unrealistic (over 120 years ). Please check the Date of Birth.')
 
-# validation method for the phone field
+    # validation method for the phone field
     @api.constrains('phone')
     def _check_phone(self):
         for record in self:
@@ -107,18 +109,22 @@ class HospitalPatient(models.Model):
                 raise ValidationError(
                     'Phone number should contain only digits. Please check the Phone field.')
 
-# validation method for the date_of_birth field
+    # validation method for the date_of_birth field
     @api.constrains('date_of_birth')
     def _check_date_of_birth(self):
         for record in self:
-            if record .date_of_birth and record.date_of_birth > fields.Date.today():
+            if record.date_of_birth and record.date_of_birth > fields.Date.today():
                 raise ValidationError(
                     'Date of Birth cannot be in the future. Please check the Date of Birth field.')
 
-# override create, write and unlink methods
-    @api.model
-    def create(self, vals):
-        return super().create(vals)
+    # override create, write and unlink methods
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('registration_no', 'New') == 'New':
+                vals['registration_no'] = self.env['ir.sequence'].next_by_code(
+                    'hospital.patient') or 'New'
+        return super().create(vals_list)
 
     def write(self, vals):
         return super().write(vals)
