@@ -12,4 +12,6 @@
     <!-- Menu Item -->
     <menuitem id="menu_hospital_medical_history" name="Medical History" action="action_hospital_medical_history" parent="hospital_management_root_menu" sequence="40"/>
 
+    <menuitem id="menu_hospital_appointment" name="Appointments" parent="hospital_management_root_menu" action="action_hospital_appointment" sequence="50"/>
+
 </odoo>
