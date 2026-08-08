@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+from datetime import date
 
 
 class HospitalPatient(models.Model):
@@ -61,6 +62,10 @@ class HospitalPatient(models.Model):
         "patient_id",
         string="Medical History"
     )
+    _registration_no_unique = models.Constraint(
+        'UNIQUE(registration_no)',
+        'Registration Number must be unique! This registration number already exists.',
+    )
 
     # onchange methid for the doctor_id field
     @api.onchange('doctor_id')
@@ -87,7 +92,16 @@ class HospitalPatient(models.Model):
             else:
                 record.age = 0
 
+    # Constrains method for the name field
+
+    @api.constrains('name')
+    def _check_name(self):
+        for record in self:
+            if not record.name or not record.name.strip():
+                raise ValidationError('Patient Name cannot be empty or contain only spaces.')
+
     # constraint method for the age field
+
     @api.constrains('age')
     def _check_age(self):
         for record in self:
