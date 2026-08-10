@@ -19,6 +19,7 @@ A comprehensive module designed for healthcare facilities to manage:
         'mail',
     ],
     'data': [
+        'security/hospital_security.xml',
         'security/ir.model.access.csv',
         'data/hospital_patient_sequence.xml',
         'views/hospital_patient_views.xml',
