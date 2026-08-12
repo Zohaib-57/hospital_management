@@ -30,13 +30,17 @@
                         </group>
                     </group>
 
-                    <group string="Medical Information">
-                        <field name="doctor_id" domain="[('active', '=', True)]" context="{'default_availability_status': 'available'}" placeholder="Assign a doctor"/>
-                        <field name="doctor_specialty" readonly="1"/>
-                        <field name="currency_id" invisible="1"/>
-                        <field name="consultation_fee"/>
-                        <field name="disease_ids" widget="many2many_tags" domain="[('active', '=', True)]" placeholder="Select diseases"/>
-                        <field name="notes" placeholder="Additional notes about the patient..."/>
+                    <group>
+                        <group string="Doctor Information">
+                            <field name="doctor_id" domain="[('active', '=', True)]" context="{'default_availability_status': 'available'}" placeholder="Assign a doctor"/>
+                            <field name="doctor_specialty" readonly="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="consultation_fee"/>
+                        </group>
+                        <group string="Medical Details">
+                            <field name="disease_ids" widget="many2many_tags" domain="[('active', '=', True)]" placeholder="Select diseases"/>
+                            <field name="notes" placeholder="Additional notes about the patient..."/>
+                        </group>
                     </group>
 
                     <group string="Medical History">

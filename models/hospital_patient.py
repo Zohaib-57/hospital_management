@@ -41,6 +41,8 @@ class HospitalPatient(models.Model):
 
     doctor_specialty = fields.Char(
         string='Doctor Specialty',
+        related='doctor_id.specialty',
+        store=True,
         readonly=True
     )
 
@@ -72,10 +74,8 @@ class HospitalPatient(models.Model):
     def _onchange_doctor_id(self):
         for rec in self:
             if rec.doctor_id:
-                rec.doctor_specialty = rec.doctor_id.specialty
                 rec.consultation_fee = rec.doctor_id.consultation_fee
             else:
-                rec.doctor_specialty = False
                 rec.consultation_fee = 0.0
 
     # compute method for the age field
