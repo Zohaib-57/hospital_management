@@ -54,9 +54,24 @@
                             </list>
                         </field>
                     </group>
-
                 </sheet>
             </form>
+        </field>
+    </record>
+
+
+    <record id="view_patient_form_inherit_emergency" model="ir.ui.view">
+        <field name="name">hospital.patient.form.inherit.emergency</field>
+        <field name="model">hospital.patient</field>
+        <field name="inherit_id" ref="hospital_management.view_hospital_patient_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[last()]" position="attributes">
+                <group string="Emergency Contact">
+                    <field name="emergency_contact_name"/>
+                    <field name="emergency_contact_phone"/>
+                    <field name="emergency_contact_relation"/>
+                </group>
+            </xpath>
         </field>
     </record>
 
@@ -76,6 +91,21 @@
                 <field name="active" column_invisible="True"/>
                 <field name="status"/>
             </list>
+        </field>
+    </record>
+
+    <record id="view_patient_form_inherit_emergency" model="ir.ui.view">
+        <field name="name">hospital.patient.form.inherit.emergency</field>
+        <field name="model">hospital.patient</field>
+        <field name="inherit_id" ref="hospital_management.view_hospital_patient_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[last()]" position="after">
+                <group string="Emergency Contact">
+                    <field name="emergency_contact_name"/>
+                    <field name="emergency_contact_phone"/>
+                    <field name="emergency_contact_relation"/>
+                </group>
+            </xpath>
         </field>
     </record>
 
