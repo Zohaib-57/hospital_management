@@ -85,7 +85,7 @@ class HospitalDoctor(models.Model):
     )
 
     patient_count = fields.Integer(
-        string="Patients",
+        string="Total Patients",
         compute="_compute_patient_count",
     )
 

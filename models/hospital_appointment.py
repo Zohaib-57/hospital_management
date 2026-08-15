@@ -21,7 +21,7 @@ class HospitalAppointment(models.Model):
         ('in_progress', 'In Progress'),
         ('completed', 'Completed'),
         ('cancelled', 'Cancelled')
-    ], string="Status", default='draft', readonly=True, copy=False, tracking=True)
+    ], string="Status", default='draft', readonly=True, copy=False)
 
     @api.model_create_multi
     def create(self, vals_list):
