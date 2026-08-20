@@ -5,6 +5,7 @@ from datetime import date
 
 class HospitalPatient(models.Model):
     _name = 'hospital.patient'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Hospital Patient'
     _rec_name = 'name'
 
@@ -24,10 +25,11 @@ class HospitalPatient(models.Model):
     email = fields.Char(string='Email')
 
     notes = fields.Text(string='Medical Notes')
-    doctor_id = fields.Many2one('hospital.doctor', string='Primary Doctor')
+
+    doctor_id = fields.Many2one('hospital.doctor', string='Primary Doctor', tracking=True)
     disease_ids = fields.Many2many(
         "hospital.disease",
-        string="Diseases"
+        string="Diseases",
     )
     active = fields.Boolean(string='Active', default=True)
     registration_date = fields.Date(string='Registration Date', default=fields.Date.context_today)
@@ -37,7 +39,7 @@ class HospitalPatient(models.Model):
         ('admitted', 'Admitted'),
         ('discharged', 'Discharged'),
         ('under_treatment', 'Under Treatment'),
-    ], string='Status', default='new')
+    ], string='Status', default='new', tracking=True)
 
     doctor_specialty = fields.Char(
         string='Doctor Specialty',
