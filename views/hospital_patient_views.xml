@@ -5,7 +5,12 @@
         <field name="name">hospital.patient.form</field>
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
+
             <form string="Patient">
+            <!-- we can also have a default method at the wizard too keep the button simpler here as odoo automatically perform the button action. -->
+                <header>
+                    <button name="%(action_hospital_patient_wizard)d" string="Update Status" type="action" class="btn-primary" context="{'default_patient_id': id}"/>
+                </header>
                 <sheet>
                     <div class="oe_title">
                         <h1>
@@ -59,13 +64,13 @@
         </field>
     </record>
 
-
+    <!-- Emergency Contact Extension (inherits the Patient form, adds a group AFTER the last group) -->
     <record id="view_patient_form_inherit_emergency" model="ir.ui.view">
         <field name="name">hospital.patient.form.inherit.emergency</field>
         <field name="model">hospital.patient</field>
         <field name="inherit_id" ref="hospital_management.view_hospital_patient_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[last()]" position="attributes">
+            <xpath expr="//group[last()]" position="after">
                 <group string="Emergency Contact">
                     <field name="emergency_contact_name"/>
                     <field name="emergency_contact_phone"/>
@@ -91,21 +96,6 @@
                 <field name="active" column_invisible="True"/>
                 <field name="status"/>
             </list>
-        </field>
-    </record>
-
-    <record id="view_patient_form_inherit_emergency" model="ir.ui.view">
-        <field name="name">hospital.patient.form.inherit.emergency</field>
-        <field name="model">hospital.patient</field>
-        <field name="inherit_id" ref="hospital_management.view_hospital_patient_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//group[last()]" position="after">
-                <group string="Emergency Contact">
-                    <field name="emergency_contact_name"/>
-                    <field name="emergency_contact_phone"/>
-                    <field name="emergency_contact_relation"/>
-                </group>
-            </xpath>
         </field>
     </record>
 

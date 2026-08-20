@@ -20,3 +20,5 @@ access_hospital_medical_history_admin,hospital_medical_history.admin,model_hospi
 access_hospital_appointment_user,hospital.appointment.user,model_hospital_appointment,hospital_management.group_hospital_user,1,1,1,0
 access_hospital_appointment_manager,hospital.appointment.manager,model_hospital_appointment,hospital_management.group_hospital_manager,1,1,1,1
 access_hospital_appointment_admin,hospital.appointment.admin,model_hospital_appointment,base.group_system,1,1,1,1
+
+access_hospital_patient_wizard,hospital.patient.wizard,model_hospital_patient_wizard,,1,1,1,1
