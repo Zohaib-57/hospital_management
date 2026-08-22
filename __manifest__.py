@@ -29,6 +29,7 @@ A comprehensive module designed for healthcare facilities to manage:
         'views/hospital_disease_views.xml',
         'views/hospital_appointment_views.xml',
         'views/hospital_menus.xml',
+        'report/hospital_patient_report.xml'
     ],
     'installable': True,
     'application': True,

@@ -23,6 +23,7 @@
                     <group>
                         <group string="Personal Information">
                             <field name="gender" required="1"/>
+                            <field name="blood_group"/>
                             <field name="date_of_birth" required="1" placeholder="Select date of birth"/>
                             <field name="age" readonly="1"/>
                             <field name="registration_date"/>

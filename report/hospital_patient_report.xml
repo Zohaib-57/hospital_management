@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- QWeb Template for Patient Report -->
+    <template id="report_patient_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Hospital Management System</h2>
+                        <h3>Patient Information</h3>
+                        <hr/>
+
+                        <table class="table table-sm">
+                            <tr>
+                                <td>
+                                    <strong>Patient Name:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="doc.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Registration Number:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="doc.registration_no"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Date of Birth:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="doc.date_of_birth"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Age:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="doc.age"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Gender:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="dict(doc._fields['gender'].selection).get(doc.gender, '')"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Blood Group:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="dict(doc._fields['blood_group'].selection).get(doc.blood_group, 'Not Specified')"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <h3>Contact Information</h3>
+                        <hr/>
+                        <table class="table table-sm">
+                            <tr>
+                                <td>
+                                    <strong>Mobile:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="doc.phone"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Email:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="doc.email"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <h3>Medical Information</h3>
+                        <hr/>
+                        <table class="table table-sm">
+                            <tr>
+                                <td>
+                                    <strong>Doctor:</strong>
+                                </td>
+                                <td>
+                                    <span t-if="doc.doctor_id" t-esc="doc.doctor_id.name"/>
+                                    <span t-if="not doc.doctor_id">Not Assigned</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Disease(s):</strong>
+                                </td>
+                                <td>
+                                    <span t-if="not doc.disease_ids">Not Specified</span>
+                                    <span t-if="doc.disease_ids">
+                                        <t t-foreach="doc.disease_ids" t-as="disease">
+                                            <span t-esc="disease.name"/>
+                                            <span t-if="not disease_last">, </span>
+                                        </t>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <h3>Registration Information</h3>
+                        <hr/>
+                        <table class="table table-sm">
+                            <tr>
+                                <td>
+                                    <strong>Registration Date:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="doc.registration_date"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Status:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="dict(doc._fields['status'].selection).get(doc.status, '')"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- Report Action -->
+    <record id="action_report_patient" model="ir.actions.report">
+        <field name="name">Patient Report</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hospital_management.report_patient_document</field>
+        <field name="report_file">hospital_management.report_patient_document</field>
+        <field name="print_report_name">'Patient - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_hospital_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>
